@@ -25,12 +25,14 @@ test_that("unit attributes are set correctly", {
     
     toks_chunk <- tokens_chunk(toks, 2)
     expect_equal(attr(toks_chunk, "unit"), "segments")
-    
-    expect_equal(dfm(corp_sent)@unit, "sentences")
-    expect_equal(dfm(corp_para)@unit, "paragraphs")
-    expect_equal(dfm(toks_chunk)@unit, "segments")
-    expect_equal(fcm(dfm(toks_chunk))@unit, "segments")
-    expect_equal(fcm(toks_chunk)@unit, "segments")
-    
+})
+
+test_that("unit attributes are set correctly for dfm", {
+    skip("until we figure out whether and how we need units for a dfm")
+    expect_equal(meta(dfm(corp_sent), "unit", type = "system"), "sentences")
+    expect_equal(meta(dfm(corp_para), "unit", type = "system"), "paragraphs")
+    expect_equal(meta(dfm(corp_seg), "unit", type = "system"), "segments")
+    expect_equal(meta(fcm(dfm(corp_seg)), "unit", type = "system"), "segments")
+    expect_equal(meta(fcm(toks_chunk), "unit", type = "system"), "segments")
 })
 
