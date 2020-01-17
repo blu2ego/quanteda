@@ -74,7 +74,7 @@ as.dfm.dfm <- function(x) {
         slots <- get_dfm_slots(x)
         x <- new("dfm", as(x, "dgCMatrix"),
                  meta = list(user = list(),
-                             system = list()),
+                             system = meta_system_defaults("dfm")),
                  docvars = upgrade_docvars(x@docvars, rownames(x)))
         set_dfm_slots(x) <- slots
     }
